@@ -84,5 +84,5 @@ class TaskDetailsView(DetailView):
 
 @cache_page(300)
 def date_cache(request):
-    date = datetime.now()
+    date = datetime.datetime.now()
     return render(request, "tasks/date_cache.html", {"date_cache": date,})
