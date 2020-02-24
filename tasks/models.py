@@ -26,9 +26,10 @@ class Category(models.Model):
 
 class Priority(models.Model):
     name = models.IntegerField(
-        "Приоритет!", choices=PRIORITY_CHOICES, default=PRIORITY_MEDIUM
+        "Приоритет:", choices=PRIORITY_CHOICES, default=PRIORITY_MEDIUM
     )
     todos_count = models.PositiveIntegerField(default=0)
+    slug = models.CharField(max_length=128)
 
     class Meta:
         verbose_name = 'Приоритет'
