@@ -16,7 +16,6 @@ class Category(models.Model):
         return f'{self.name} ({self.slug})'
 
 class Priority(models.Model):
-    slug = models.CharField(max_length=128)
     name = models.CharField(max_length=256)
     todos_count = models.PositiveIntegerField(default=0)
 
@@ -46,11 +45,7 @@ class TodoItem(models.Model):
         User, on_delete=models.CASCADE, related_name="tasks"
     )
     priority = models.ForeignKey(
-        Priority,
-        on_delete=models.CASCADE,
-        related_name="tasks",
-        blank=True,
-        null=True
+        Priority, on_delete=models.CASCADE, related_name="todo"
     )
     category = models.ManyToManyField(Category, blank=True)
 
