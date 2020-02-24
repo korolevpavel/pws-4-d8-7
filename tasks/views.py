@@ -3,6 +3,7 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from tasks.models import TodoItem, Category
 from django.views.decorators.cache import cache_page
+import datetime
 
 
 def index(request):
