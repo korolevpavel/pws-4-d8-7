@@ -47,7 +47,7 @@ class TodoItem(models.Model):
         User, on_delete=models.CASCADE, related_name="tasks"
     )
     priority = models.IntegerField(
-        "Приоритет", choices=PRIORITY_CHOICES, default=PRIORITY_MEDIUM
+        "Приоритет", choices=PRIORITY_CHOICES, default=PRIORITY_MEDIUM, related_name="tasks"
     )
     category = models.ManyToManyField(Category, blank=True)
 
