@@ -14,4 +14,4 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Priority)
 class PriorityAdmin(admin.ModelAdmin):
-    list_display = ('slug', 'name', 'todos_count')
+    list_display = ('name', 'todos_count')
