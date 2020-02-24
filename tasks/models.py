@@ -15,6 +15,17 @@ class Category(models.Model):
     def __str__(self):
         return f'{self.name} ({self.slug})'
 
+class Priority(models.Model):
+    slug = models.CharField(max_length=128)
+    name = models.CharField(max_length=256)
+    todos_count = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        verbose_name = 'Приоритет'
+        verbose_name_plural = 'Приоритеты'
+
+    def __str__(self):
+        return f'{self.name} ({self.slug})'
 
 class TodoItem(models.Model):
     PRIORITY_HIGH = 1

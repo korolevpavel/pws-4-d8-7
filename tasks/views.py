@@ -8,21 +8,15 @@ import datetime
 
 def index(request):
 
-    # 1st version
-    # counts = {t.name: random.randint(1, 100) for t in Tag.objects.all()}
-
-    # 2nd version
-    # counts = {t.name: t.taggit_taggeditem_items.count()
-    # for t in Tag.objects.all()}
-
-    # 3rd version
     from django.db.models import Count
 
-    counts = Category.objects.annotate(total_tasks=Count(
-        'todoitem')).order_by("-total_tasks")
-    counts = {c.name: c.total_tasks for c in counts}
+    counts = Category.objects.all().order_by("-todos_count")
+    counts = {c.name: c.todos_count for c in counts}
 
-    return render(request, "tasks/index.html", {"counts": counts})
+    priority = Priority.objects.all().order_by("-todos_count")
+    priority = {p.name: p.todos_count for p in priority}
+
+    return render(request, "tasks/index.html", {"counts": counts, "priority": priority})
 
 
 def filter_tasks(tags_by_task):

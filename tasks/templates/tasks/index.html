@@ -11,5 +11,16 @@
   {% empty %}
     <li>Список задач по категориям пуст. Попробуйте добавить их из админки</li>
   {% endfor %}
+
+  <h1>Приоритеты</h1>
+  <ul>
+  {% for p in priorities %}
+
+    <li><span class="badge badge-info">{{ p.name }}: {{ p.todos_count }}</span></li>
+
+  {% empty %}
+    <li>Список приоритетов пуст. Попробуйте добавить их из админки</li>
+  {% endfor %}
+
   </ul>
 {% endblock %}
