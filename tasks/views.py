@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from tasks.models import TodoItem, Category
+from django.views.decorators.cache import cache_page
 
 
 def index(request):
@@ -79,3 +80,8 @@ class TaskListView(ListView):
 class TaskDetailsView(DetailView):
     model = TodoItem
     template_name = "tasks/details.html"
+
+@cache_page(300)
+def date_cache(request):
+    date = datetime.now()
+    return render(request, "tasks/date_cache.html", {"date_cache": date,})
