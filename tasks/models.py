@@ -45,8 +45,13 @@ class TodoItem(models.Model):
     owner = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="tasks"
     )
-    priority = models.IntegerField(
-        "Приоритет", choices=PRIORITY_CHOICES, default=PRIORITY_MEDIUM
+    priority = models.ForeignKey(
+        Priority,
+        on_delete=models.CASCADE,
+        related_name="tasks",
+        blank=True,
+        null=True,
+    )
     )
     category = models.ManyToManyField(Category, blank=True)
 
