@@ -25,11 +25,8 @@ class Category(models.Model):
         return f'{self.name} ({self.slug})'
 
 class Priority(models.Model):
-    name = models.IntegerField(
-        "Приоритет:", choices=PRIORITY_CHOICES, default=PRIORITY_MEDIUM
-    )
+    name = models.CharField(max_length=256)
     todos_count = models.PositiveIntegerField(default=0)
-    slug = models.CharField(max_length=128)
 
     class Meta:
         verbose_name = 'Приоритет'
@@ -46,8 +43,12 @@ class TodoItem(models.Model):
     owner = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="tasks"
     )
-    priority = models.IntegerField(
-        "Приоритет", choices=PRIORITY_CHOICES, default=PRIORITY_MEDIUM, related_name="tasks"
+    priority = models.ForeignKey(
+        Priority,
+        on_delete=models.CASCADE,
+        related_name="tasks",
+        blank=True,
+        null=True,
     )
     category = models.ManyToManyField(Category, blank=True)
 
