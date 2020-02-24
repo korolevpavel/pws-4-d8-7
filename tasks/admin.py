@@ -12,3 +12,6 @@ class TodoItemAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('slug', 'name')
 
+@admin.register(Priority)
+class PriorityAdmin(admin.ModelAdmin):
+    list_display = ('slug', 'name', 'todos_count')
